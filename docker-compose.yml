@@ -1,0 +1,48 @@
+version: "3"
+services:
+  src:
+    build:
+      context: ./src
+      dockerfile: DockerFile
+    command: npm i
+    ports:
+      - 8080:8000
+    depends_on:
+      - postgres
+      - cache
+  postgres:
+    image: "postgres"
+    env_file:
+      .env
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: /data/postgres
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: 12345
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ong@example.com
+      PGADMIN_DEFAULT_PASSWORD: ong
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "54322:80"
+    depends_on:
+      - postgres
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass 12345
+    volumes: 
+      - cache:/data
+volumes:
+  cache:
+    driver: local
