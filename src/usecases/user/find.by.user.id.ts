@@ -3,7 +3,7 @@ import { UserRepository } from "../../infra/user/user.repository";
 import User from "../../infra/user/user.entity";
 
 @Injectable()
-export default class FindUserByIdUsecase{
+export class FindUserByIdUsecase{
     constructor(
        
         private usersRepository: UserRepository,

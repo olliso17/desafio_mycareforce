@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 dotenv.config();
 @Injectable()
-export default class EditPasswordUserUsecase{
+export class EditPasswordUserUsecase{
     constructor(
         // @Inject("UserRepo")
         private usersRepository: UserRepository,

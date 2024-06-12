@@ -14,7 +14,7 @@ const os = require("os");
 dotenv.config();
 
 @Injectable()
-export default class CreateUseUsecase {
+export class CreateUseUsecase {
   constructor(
     private usersRepository: UserRepository,
     private loginRepository: LoginRepository,

@@ -14,10 +14,10 @@ import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { LoginUsecase } from "../../usecases/login/login.usecase";
 import { AuthGuard, Public } from "../auth/auth.guard";
 import { EditPasswordUserInputDto } from "./dto/edit-user.dto";
-import CreateUseUsecase from "../../usecases/user/createUser.usecase";
-import EditPasswordUserUsecase from "../../usecases/user/edit.user.usecase";
+import {CreateUseUsecase} from "../../usecases/user/createUser.usecase";
+import {EditPasswordUserUsecase }from "../../usecases/user/edit.user.usecase";
 import { CreateUserInputDto } from "./dto/create.user.dto";
-import FindUserByIdUsecase from "../../usecases/user/find.by.user.id";
+import {FindUserByIdUsecase} from "../../usecases/user/find.by.user.id";
 
 @ApiTags('users')
 @Controller()

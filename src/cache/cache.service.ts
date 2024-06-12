@@ -1,6 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateCacheDto } from './dto/create-cache.dto';
-import { UpdateCacheDto } from './dto/update-cache.dto';
 import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
 
 @Injectable()
