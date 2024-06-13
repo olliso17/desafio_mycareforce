@@ -8,10 +8,11 @@ export class CacheService {
     const value = await this.cacheManager.get<{ access_token?: string }>(
       bearer,
     )
+
     return value?.access_token || null;
   }
 
   async storeData(bearer: string): Promise<void> {
-    await this.cacheManager.set(bearer, { access_token: bearer, }, 200000);
+    await this.cacheManager.set(bearer, { access_token: bearer, }, 86400 );
   }
 }

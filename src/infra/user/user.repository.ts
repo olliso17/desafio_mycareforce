@@ -17,7 +17,6 @@ export class UserRepository {
   async find(id: string): Promise<User> {
     const user = await this.typeOrm.findOneOrFail({
       where: { id: id },
-      relations: ["ongs"], 
     });
     return user;
   }

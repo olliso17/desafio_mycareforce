@@ -19,7 +19,7 @@ import { CacheService } from '../../cache/cache.service';
     JwtModule.register({
       global: true,
       secret: process.env.SALT,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '1d'},
     }),
     TypeOrmModule.forFeature([Login, User])
   ],

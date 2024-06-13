@@ -11,7 +11,7 @@ type LoginProps = {
 @Entity()
 @Index("idx_user_id_in_login", ["user"])
 export class Login extends Base {
-  @Column({ type: "varchar", length: 300 })
+  @Column({ type: "varchar"})
   token: string;
 
   @Column({ type: "varchar" })

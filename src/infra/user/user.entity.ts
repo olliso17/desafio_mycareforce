@@ -10,13 +10,13 @@ type UserProps = {
   };
   @Entity({ name: "user" })
   export default class User extends Base {
-    @Column({ type: "varchar", length: 300 })
+    @Column({ type: "varchar" })
     name: string;
   
-    @Column({ type: "varchar", length: 300, unique: true })
+    @Column({ type: "varchar",  unique: true })
     email: string;
   
-    @Column({ type: "varchar", length: 300 })
+    @Column({ type: "varchar"})
     password: string;
 
     @OneToMany(() => Login, login => login.user)

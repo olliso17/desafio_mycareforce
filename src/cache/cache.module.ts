@@ -4,7 +4,6 @@
     import { RedisClientOptions } from "redis";
     import {redisStore} from "cache-manager-redis-yet";
     import { CacheService } from './cache.service';
-    import { CacheController } from './cache.controller';
 
     @Global()
     @Module({
@@ -12,12 +11,14 @@
             CacheModule.register<RedisClientOptions>({
                 store: redisStore,
                 socket: {
-                    host: process.env.REDIS_HOST || 'localhost',
+                    host: process.env.REDIS_HOST || 'cache',
                     port: parseInt(process.env.REDIS_PORT, 10) || 6379,
+                    
                 },
+                password: process.env.REDIS_PASSWORD,
+                ttl: 86400, 
             }),
             ],
-        controllers:[CacheController],
         providers: [CacheService],
         exports:[CacheService,  CacheModule]
     })

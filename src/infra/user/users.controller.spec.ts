@@ -1,10 +1,12 @@
 import { UsersController } from './users.controller';
 import { UserRepository } from './user.repository';
 import { LoginUsecase } from '../../usecases/login/login.usecase';
-import CreateUseUsecase from '../../usecases/user/createUser.usecase';
 import { LoginRepository } from '../login/login.repository';
-import FindUserByIdUsecase from '../../usecases/user/find.by.user.id';
-import EditPasswordUserUsecase from '../../usecases/user/edit.user.usecase';
+import { EditPasswordUserUsecase } from '../../usecases/user/edit.user.usecase';
+import { FindUserByIdUsecase } from '../../usecases/user/find.by.user.id';
+import { CreateUseUsecase } from '../../usecases/user/createUser.usecase';
+import { JwtService } from '@nestjs/jwt';
+import { CacheService } from '../../cache/cache.service';
 
 describe('UsersController', () => {
   let controller: UsersController;
@@ -14,16 +16,19 @@ describe('UsersController', () => {
   let editPasswordUserUsecase: EditPasswordUserUsecase;
   let findUserByIdUsecase: FindUserByIdUsecase;
   let loginUsecase: LoginUsecase;
-
+  let jwtService: JwtService;
+  let cacheService: CacheService;
   beforeEach(() => {
     const typeOrmMock: any = {};
     userRepository = new UserRepository(typeOrmMock);
     loginRepository = new LoginRepository(typeOrmMock);
-    createUserUsecase = new CreateUseUsecase(userRepository, loginRepository);
+    jwtService = new JwtService(typeOrmMock)
+    cacheService = new CacheService(typeOrmMock)
+    createUserUsecase = new CreateUseUsecase(userRepository, loginRepository, jwtService, cacheService);
     editPasswordUserUsecase = new EditPasswordUserUsecase(userRepository);
     findUserByIdUsecase = new FindUserByIdUsecase(userRepository);
-    loginUsecase = new LoginUsecase(userRepository, loginRepository)
-    controller = new UsersController(createUserUsecase, editPasswordUserUsecase,  loginUsecase, findUserByIdUsecase)
+    loginUsecase = new LoginUsecase(userRepository, loginRepository, jwtService, cacheService)
+    controller = new UsersController(createUserUsecase, editPasswordUserUsecase,  findUserByIdUsecase)
   });
 
   it('should be defined', () => {

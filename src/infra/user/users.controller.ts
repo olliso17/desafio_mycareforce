@@ -5,13 +5,9 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
   UseGuards,
-  ForbiddenException,
-  Req,
 } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { LoginUsecase } from "../../usecases/login/login.usecase";
 import { AuthGuard, Public } from "../auth/auth.guard";
 import { EditPasswordUserInputDto } from "./dto/edit-user.dto";
 import {CreateUseUsecase} from "../../usecases/user/createUser.usecase";
@@ -22,11 +18,10 @@ import {FindUserByIdUsecase} from "../../usecases/user/find.by.user.id";
 @ApiTags('users')
 @Controller()
 export class UsersController {
-  // constructor(private readonly usersService: UsersService) {}
+  
   constructor(
     private readonly createUser: CreateUseUsecase,
     private readonly editPasswordUser: EditPasswordUserUsecase,
-    private readonly loginUser: LoginUsecase,
     private readonly findUser: FindUserByIdUsecase,
   ) {}
 
@@ -38,7 +33,7 @@ export class UsersController {
 
   @Get("user/:id")
   @UseGuards(AuthGuard)
-   @ApiBearerAuth('JWT-auth')
+  @ApiBearerAuth('JWT-auth')
   findOne(@Param("id") id: string) {
     return this.findUser.execute(id);
   }

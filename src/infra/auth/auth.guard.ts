@@ -39,19 +39,19 @@ export class AuthGuard implements CanActivate {
         const redisToken = await this.cacheService.retrieveData(token);
 
         if (!token || !redisToken) {
-            throw new UnauthorizedException('Token não fornecido ou não autorizado.');
+            throw new UnauthorizedException('Token não fornecido ou não autorizado.' + redisToken);
         }
 
         try {
             const payload = await this.jwtService.verifyAsync(redisToken, {
                 secret: process.env.SALT,
-                algorithms: ['HS256'],
+                // algorithms: ['HS256'],
             });
 
             request['user'] = payload;
 
-        } catch {
-            throw new UnauthorizedException('Falha na verificação do token.');
+        } catch(err) {
+            throw new UnauthorizedException('Falha na verificação do token.'+err);
         }
         return true;
     }

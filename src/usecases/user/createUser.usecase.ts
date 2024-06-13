@@ -28,7 +28,6 @@ export class CreateUseUsecase {
     const salt = process.env.SALT;
 
     createUserDto.email = bcrypt.hashSync(createUserDto.email, salt);
-    createUserDto.name = bcrypt.hashSync(createUserDto.name, salt);
     createUserDto.password = bcrypt.hashSync(createUserDto.password, salt);
     const user = new User(createUserDto);
     const payload = {
@@ -50,7 +49,7 @@ export class CreateUseUsecase {
 
       return { message: 'created successfully', token: token.access_token };
     } catch (err) {
-      return { message: "credentials invalid" };
+      return { message: "credentials invalid" + err +' '+ token.access_token};
     }
   }
 }
