@@ -6,7 +6,6 @@ import { LoginUsecase } from "../../usecases/login/login.usecase";
 import { AuthGuard } from "../auth/auth.guard";
 import User from "./user.entity";
 import {CreateUseUsecase} from "../../usecases/user/createUser.usecase";
-import {EditPasswordUserUsecase} from "../../usecases/user/edit.user.usecase";
 import { Login } from "../login/login.entity";
 import { LoginRepository } from "../login/login.repository";
 import { JwtService } from "@nestjs/jwt";
@@ -23,7 +22,6 @@ import { FindUserByIdUsecase } from "../../usecases/user/find.by.user.id";
     CreateUseUsecase,
     UserRepository,
     LoginRepository,
-    EditPasswordUserUsecase,
     FindUserByIdUsecase,
     LoginUsecase,
     AuthGuard,

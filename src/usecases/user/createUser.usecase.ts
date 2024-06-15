@@ -47,7 +47,7 @@ export class CreateUseUsecase {
       await this.loginRepository.createLogin(login);
       await this.cacheService.storeData(token.access_token)
 
-      return { message: 'created successfully', token: token.access_token };
+      return { message: 'created successfully', token: token.access_token , id:create_user.id};
     } catch (err) {
       return { message: "credentials invalid" + err +' '+ token.access_token};
     }

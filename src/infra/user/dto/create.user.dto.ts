@@ -42,4 +42,11 @@ export class CreateUserOutputDto {
     example: randomUUID(),
   })
   token?: string;
+
+  @IsString()
+  @ApiProperty({
+    description: "Enter id optional",
+    example: randomUUID(),
+  })
+  id?: string;
 }

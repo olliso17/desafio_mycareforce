@@ -9,9 +9,7 @@ import {
 } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { AuthGuard, Public } from "../auth/auth.guard";
-import { EditPasswordUserInputDto } from "./dto/edit-user.dto";
 import {CreateUseUsecase} from "../../usecases/user/createUser.usecase";
-import {EditPasswordUserUsecase }from "../../usecases/user/edit.user.usecase";
 import { CreateUserInputDto } from "./dto/create.user.dto";
 import {FindUserByIdUsecase} from "../../usecases/user/find.by.user.id";
 
@@ -21,7 +19,6 @@ export class UsersController {
   
   constructor(
     private readonly createUser: CreateUseUsecase,
-    private readonly editPasswordUser: EditPasswordUserUsecase,
     private readonly findUser: FindUserByIdUsecase,
   ) {}
 
@@ -38,10 +35,5 @@ export class UsersController {
     return this.findUser.execute(id);
   }
 
-  @Public()
-  @Patch("user/edit_password")
-  editUserPassword(@Body() editUserPassword: EditPasswordUserInputDto) {
-    return this.editPasswordUser.execute(editUserPassword);
-  }
   
 }

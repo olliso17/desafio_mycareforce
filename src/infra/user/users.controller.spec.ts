@@ -2,7 +2,6 @@ import { UsersController } from './users.controller';
 import { UserRepository } from './user.repository';
 import { LoginUsecase } from '../../usecases/login/login.usecase';
 import { LoginRepository } from '../login/login.repository';
-import { EditPasswordUserUsecase } from '../../usecases/user/edit.user.usecase';
 import { FindUserByIdUsecase } from '../../usecases/user/find.by.user.id';
 import { CreateUseUsecase } from '../../usecases/user/createUser.usecase';
 import { JwtService } from '@nestjs/jwt';
@@ -13,7 +12,6 @@ describe('UsersController', () => {
   let userRepository: UserRepository;
   let createUserUsecase: CreateUseUsecase;
   let loginRepository: LoginRepository;
-  let editPasswordUserUsecase: EditPasswordUserUsecase;
   let findUserByIdUsecase: FindUserByIdUsecase;
   let loginUsecase: LoginUsecase;
   let jwtService: JwtService;
@@ -25,10 +23,9 @@ describe('UsersController', () => {
     jwtService = new JwtService(typeOrmMock)
     cacheService = new CacheService(typeOrmMock)
     createUserUsecase = new CreateUseUsecase(userRepository, loginRepository, jwtService, cacheService);
-    editPasswordUserUsecase = new EditPasswordUserUsecase(userRepository);
     findUserByIdUsecase = new FindUserByIdUsecase(userRepository);
     loginUsecase = new LoginUsecase(userRepository, loginRepository, jwtService, cacheService)
-    controller = new UsersController(createUserUsecase, editPasswordUserUsecase,  findUserByIdUsecase)
+    controller = new UsersController(createUserUsecase, findUserByIdUsecase)
   });
 
   it('should be defined', () => {

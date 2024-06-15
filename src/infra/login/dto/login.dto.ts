@@ -24,20 +24,27 @@ export class LoginInputDto {
   })
   password: string;
 
-  @IsString()
-  @IsNotEmpty({ message: "User id is not found" })
-  @ApiProperty({
-    description: "Enter user id",
-    example: randomUUID,
-  })
-  user_id: string;
 }
 
 export class LoginOutputDto {
   @IsString()
   @ApiProperty({
-    description: "Error message or token",
-    example: { message: "Error" },
+    description: "Enter message optional",
+    example: "login successfully",
   })
   message: string;
+
+  @IsString()
+  @ApiProperty({
+    description: "Enter token optional",
+    example: randomUUID(),
+  })
+  token?: string;
+
+  @IsString()
+  @ApiProperty({
+    description: "Enter id optional",
+    example: randomUUID(),
+  })
+  id?: string;
 }

@@ -14,7 +14,9 @@ export class FindUserByIdUsecase{
         try{
           
           const user = await this.usersRepository.find(id);
-          
+          if (!user) {
+            return { message: "user not found" };
+          }
           return user;
 
         }catch(err){

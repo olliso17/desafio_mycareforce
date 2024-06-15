@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UserRepository } from "../../infra/user/user.repository";
 import { Login } from "../../infra/login/login.entity";
-import { LoginInputDto } from "../../infra/login/dto/login.dto";
+import { LoginInputDto, LoginOutputDto } from "../../infra/login/dto/login.dto";
 import { LoginRepository } from "../../infra/login/login.repository";
 import { JwtService } from "@nestjs/jwt";
 import { CacheService } from "../../cache/cache.service";
@@ -20,7 +20,7 @@ export class LoginUsecase {
     private cacheService: CacheService
     ) {}
 
-  async execute(input: LoginInputDto): Promise<string> {
+  async execute(input: LoginInputDto): Promise<LoginOutputDto> {
     const users = await this.userRepository.findAll();
     const networkInfo = os.networkInterfaces();
     const salt = process.env.SALT;
@@ -38,7 +38,7 @@ export class LoginUsecase {
     }
 
     const payload = {
-      userEmail: hashedEmail, userName: hashedPassword
+      userEmail: hashedEmail, userName: isUser.name,
     }
     const token = {
       access_token: await this.jwtService.signAsync(payload)
@@ -55,7 +55,8 @@ export class LoginUsecase {
     try {
       await this.loginRepository.createLogin(login); 
       await this.cacheService.storeData(token.access_token)
-      return token.access_token;
+      
+      return { message: 'login successfully', token: token.access_token , id:isUser.id};
     } catch (err) {
       throw new UnauthorizedException("Failed to generate token");
     }

@@ -2,7 +2,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import User from "../../infra/user/user.entity";
 import { Base } from "../base/base.entity";
 
-type LoginProps = {
+export type LoginProps = {
   token: string;
   user_id: string;
   localhost: string;

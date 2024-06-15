@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany } from "typeorm";
 import { Base } from "../base/base.entity";
 import { Login } from "../login/login.entity";
 
-type UserProps = {
+export type UserProps = {
     name: string;
     email: string;
     password: string;
