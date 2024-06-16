@@ -9,7 +9,7 @@ export const dataSourceOptions: DataSourceOptions = {
   database: "postgres",
   entities: ["dist/**/*.entity.js"],
   migrations: ["dist/db/migrations/*.js"],
-  //synchronize: true,   /*quando for sincronizar com o banco*/
+  synchronize: true,   /*quando for sincronizar com o banco*/
 };
 
 const dataSource = new DataSource(dataSourceOptions);
