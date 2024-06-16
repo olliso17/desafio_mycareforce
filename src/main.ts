@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { Redis } from "ioredis";
+import { url } from "inspector";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -29,15 +30,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
   app.enableCors();
-  // dotenv.config();
 
-  const redis = new Redis({
-    host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT, 10),
-    username: process.env.REDIS_USER,
-    password: process.env.REDIS_PASSWORD,
-    tls: {} // TLS habilitado
-  });
+  const redis = new Redis(process.env.REDIS_URL);
   
   redis.on('connect', () => {
     console.log('Connected to Redis');
