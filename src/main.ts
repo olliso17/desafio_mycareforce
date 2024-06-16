@@ -31,15 +31,15 @@ async function bootstrap() {
   SwaggerModule.setup("api", app, document);
   app.enableCors();
 
-  const redis = new Redis(process.env.REDIS_URL);
+  // const redis = new Redis(process.env.REDIS_URL);
   
-  redis.on('connect', () => {
-    console.log('Connected to Redis');
-  });
+  // redis.on('connect', () => {
+  //   console.log('Connected to Redis');
+  // });
   
-  redis.on('error', (err) => {
-    console.error('Redis connection error:', err);
-  });
+  // redis.on('error', (err) => {
+  //   console.error('Redis connection error:', err);
+  // });
   await app.listen(3000);
 }
 
