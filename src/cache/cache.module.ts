@@ -11,12 +11,11 @@
             CacheModule.register<RedisClientOptions>({
                 store: redisStore,
                 socket: {
-                    host: process.env.REDIS_HOST || 'cache',
-                    port: parseInt(process.env.REDIS_PORT, 10) || 6379,
-                    
+                    host: process.env.REDIS_HOST ,
+                    port: parseInt(process.env.REDIS_PORT),
                 },
-                username: process.env.REDIS_USER || 'ollie', 
-                password: process.env.REDIS_PASSWORD || '12345',
+                username: process.env.REDIS_USER, 
+                password: process.env.REDIS_PASSWORD ,
                 ttl: 86400, 
             }),
             ],
