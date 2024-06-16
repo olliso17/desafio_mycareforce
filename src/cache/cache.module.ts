@@ -15,7 +15,8 @@
                     port: parseInt(process.env.REDIS_PORT, 10) || 6379,
                     
                 },
-                password: process.env.REDIS_PASSWORD,
+                username: process.env.REDIS_USER || 'ollie', 
+                password: process.env.REDIS_PASSWORD || '12345',
                 ttl: 86400, 
             }),
             ],
