@@ -12,7 +12,8 @@ services:
     env_files:
       - .env
     build:
-      - dockerfile: src/Dockerfile
+      context: ./src
+      dockerfile: Dockerfile
     start_command: npm start
     ports:
       - 8080:8000
