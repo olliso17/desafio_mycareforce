@@ -1,5 +1,5 @@
 
-    import { Global, Module } from "@nestjs/common";
+    import { Global, Module} from "@nestjs/common";
     import {CacheModule} from "@nestjs/cache-manager";
     import { RedisClientOptions } from "redis";
     import {redisStore} from "cache-manager-redis-yet";
@@ -19,4 +19,4 @@
         exports:[CacheService,  CacheModule]
     })
 
-    export class AppCacheModule{}
+    export class AppCacheModule {}

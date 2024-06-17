@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module} from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthGuard } from './auth.guard';
@@ -12,9 +12,13 @@ import { AppCacheModule } from '../cache/cache.module';
 import { UsersModule } from '../user/users.module';
 import { CacheService } from '../cache/cache.service';
 import { LocalStrategy } from './localStorage';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
+    PassportModule.register({
+      session: true,
+    }),
     AppCacheModule,
     UsersModule,
     JwtModule.register({
@@ -34,4 +38,4 @@ import { LocalStrategy } from './localStorage';
     LocalStrategy
   ],
 })
-export class AuthModule { }
+export class AuthModule {}
