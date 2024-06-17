@@ -5,7 +5,7 @@ import { LoginRepository } from '../login/login.repository';
 import { FindUserByIdUsecase } from '../../usecases/user/find.by.user.id';
 import { CreateUseUsecase } from '../../usecases/user/createUser.usecase';
 import { JwtService } from '@nestjs/jwt';
-import { CacheService } from '../../cache/cache.service';
+import { CacheService } from '../cache/cache.service';
 
 describe('UsersController', () => {
   let controller: UsersController;

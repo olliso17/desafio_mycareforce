@@ -3,7 +3,7 @@ import { LoginUsecase } from './login.usecase';
 import { UserRepository } from '../../infra/user/user.repository';
 import { LoginRepository } from '../../infra/login/login.repository';
 import { JwtService } from '@nestjs/jwt';
-import { CacheService } from '../../cache/cache.service';
+import { CacheService } from '../../infra/cache/cache.service';
 import { UnauthorizedException } from '@nestjs/common';
 
 jest.mock('bcryptjs');

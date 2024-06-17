@@ -9,8 +9,8 @@ import {CreateUseUsecase} from "../../usecases/user/createUser.usecase";
 import { Login } from "../login/login.entity";
 import { LoginRepository } from "../login/login.repository";
 import { JwtService } from "@nestjs/jwt";
-import { CacheService } from "../../cache/cache.service";
-import { AppCacheModule } from "../../cache/cache.module";
+import { CacheService } from "../cache/cache.service";
+import { AppCacheModule } from "../cache/cache.module";
 import { FindUserByIdUsecase } from "../../usecases/user/find.by.user.id";
 
 @Module({

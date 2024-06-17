@@ -8,7 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { CacheService } from '../../cache/cache.service';
+import { CacheService } from '../cache/cache.service';
 
 const dotenv = require("dotenv");
 dotenv.config();

@@ -5,7 +5,7 @@ import { LoginRepository } from "../../infra/login/login.repository";
 import { CreateUserInputDto, CreateUserOutputDto } from "../../infra/user/dto/create.user.dto";
 import { Login } from "../../infra/login/login.entity";
 import { JwtService } from "@nestjs/jwt";
-import { CacheService } from "../../cache/cache.service";
+import { CacheService } from "../../infra/cache/cache.service";
 
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");

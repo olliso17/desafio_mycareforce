@@ -8,9 +8,10 @@ import User from '../user/user.entity';
 import { UserRepository } from '../user/user.repository';
 import { LoginRepository } from '../login/login.repository';
 import { Login } from '../login/login.entity';
-import { AppCacheModule } from '../../cache/cache.module';
+import { AppCacheModule } from '../cache/cache.module';
 import { UsersModule } from '../user/users.module';
-import { CacheService } from '../../cache/cache.service';
+import { CacheService } from '../cache/cache.service';
+import { LocalStrategy } from './localStorage';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { CacheService } from '../../cache/cache.service';
     LoginRepository,
     UserRepository,
     AuthGuard,
-    CacheService
+    CacheService,
+    LocalStrategy
   ],
 })
 export class AuthModule { }

@@ -1,7 +1,7 @@
 import { ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { CacheService } from '../../cache/cache.service';
+import { CacheService } from '../cache/cache.service';
 import { Cache } from 'cache-manager';
 import { AuthGuard } from './auth.guard';
 

@@ -3,7 +3,7 @@ import { LoginUsecase } from "../../usecases/login/login.usecase";
 import { LoginRepository } from "../login/login.repository";
 import { UserRepository } from "../user/user.repository";
 import { AuthController } from "./auth.controller";
-import { CacheService } from "../../cache/cache.service";
+import { CacheService } from "../cache/cache.service";
 
 
 describe('AuthController', () => {
